@@ -15,6 +15,9 @@ import com.fileupload.EndPoints;
 import com.fileupload.R;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -80,15 +83,23 @@ public class MainActivity extends AppCompatActivity {
             RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
             MultipartBody.Part body = MultipartBody.Part.createFormData("upload_file", file.getName(), reqFile);
             RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "rahul");
-            RequestBody paword = RequestBody.create(MediaType.parse("text/plain"), "rahul");
+            RequestBody paword = RequestBody.create(MediaType.parse("text/plain"), "kumar");
+            Map<String, RequestBody> map = new HashMap<>();
 
-            retrofit2.Call<okhttp3.ResponseBody> req = service.postImage(body,name,paword);
+            map.put("UserName", name);
+            map.put("Password", paword);
+
+
+            retrofit2.Call<okhttp3.ResponseBody> req = service.postImage(body, map);
 
             req.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                    Toast.makeText(MainActivity.this, "success response", Toast.LENGTH_SHORT).show();
+                    try {
+                        Toast.makeText(MainActivity.this, "response:" + response.body().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
