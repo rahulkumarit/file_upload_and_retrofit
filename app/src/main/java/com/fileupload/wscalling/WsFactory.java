@@ -4,6 +4,9 @@ import com.fileupload.models.Login;
 import com.fileupload.models.UploadImage;
 import com.fileupload.retrofit.ApiClient;
 import com.fileupload.retrofit.ApiInterface;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -30,4 +33,12 @@ public class WsFactory {
     }
 
 
-}
+    public static Call rawJSONRequest(JsonObject jsonObject) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<JsonObject> loginCall = apiService.postRawJSON(jsonObject);
+        return loginCall;
+
+    }
+
+
+    }

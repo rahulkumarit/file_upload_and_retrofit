@@ -24,19 +24,21 @@
         <activity
             android:name=".retrofit.MainActivity"
             android:screenOrientation="portrait">
-              <intent-filter>
-                  <action android:name="android.intent.action.MAIN" />
-                  <category android:name="android.intent.category.LAUNCHER" />
-              </intent-filter>
+            <!--
+                        <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
+            -->
         </activity>
 
         <activity
             android:name=".retrofit.RetrofitActivityNew"
             android:screenOrientation="portrait">
-              <!--<intent-filter>
-                  <action android:name="android.intent.action.MAIN" />
-                  <category android:name="android.intent.category.LAUNCHER" />
-              </intent-filter>-->
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
         </activity>
 
         <activity
@@ -50,12 +52,21 @@
 
 
         <activity
-            android:name=".retrofit.LoginActivity"
+            android:name=".retrofit.PostRawJasonActivity"
             android:screenOrientation="portrait">
-          <!--  <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".retrofit.LoginActivity"
+            android:screenOrientation="portrait">
+            <!--  <intent-filter>
+                  <action android:name="android.intent.action.MAIN" />
+                  <category android:name="android.intent.category.LAUNCHER" />
+              </intent-filter>-->
         </activity>
 
     </application>
