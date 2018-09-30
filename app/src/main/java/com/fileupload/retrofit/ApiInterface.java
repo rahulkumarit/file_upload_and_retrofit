@@ -5,6 +5,7 @@ package com.fileupload.retrofit;
 
 
 import com.fileupload.models.Login;
+import com.fileupload.models.UploadImage;
 import com.fileupload.models.User;
 import java.util.Map;
 import okhttp3.MultipartBody;
@@ -47,9 +48,13 @@ public interface ApiInterface {
 
     @Multipart
     @POST("uploadNew.php")
-    Call<ResponseBody> postImage(@Part MultipartBody.Part image, @PartMap Map<String, RequestBody> map);
+    Call<UploadImage> postImage(@Part MultipartBody.Part image, @PartMap Map<String, RequestBody> map);
 
 
+    //The
+   /* @Multipart
+    @POST("uploadNew.php")
+    Call<ResponseBody> postImage(@Part MultipartBody.Part image, @PartMap Map<String, RequestBody> map);*/
 
 
 

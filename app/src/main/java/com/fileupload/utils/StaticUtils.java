@@ -5,6 +5,8 @@ package com.fileupload.utils;
 
 public  class StaticUtils   {
 
+    public static final int REQUEST_LOGIN = 10001;
+    public static final int REQUEST_UPLOAD = 10002;
 
 
 }
