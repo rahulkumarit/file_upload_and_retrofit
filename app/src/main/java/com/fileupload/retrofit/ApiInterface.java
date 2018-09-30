@@ -36,13 +36,14 @@ public interface ApiInterface {
     @POST("user/edit")
     Call<User> updateUser(@Field("first_name") String first, @Field("last_name") String last);
 
-    @Multipart
-    @POST("user/photo")
-    Call<User> updateUser(@Part("photo") RequestBody photo, @Part("description") RequestBody description);
 
     @FormUrlEncoded
     @POST("LoginNew.php/")
     Call<Login> Login(@FieldMap Map<String, String> fields);
+
+    @Multipart
+    @POST("user/photo")
+    Call<User> updateUser(@Part("photo") RequestBody photo, @Part("description") RequestBody description);
 
     @Multipart
     @POST("uploadNew.php")

@@ -41,6 +41,7 @@ public class RetrofitActivityNew extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+
         Call<MoviesResponse> call = apiService.getTopRatedMovies(API_KEY);
 
         call.enqueue(new Callback<MoviesResponse>() {

@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
     private void codeForLogin() {
         String userName = edtUserName.getText().toString().trim();
         String password = edtUPassword.getText().toString().trim();
-
         if (TextUtils.isEmpty(userName)) {
             Toast.makeText(LoginActivity.this, "eneter user name", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
@@ -76,7 +75,6 @@ public class LoginActivity extends AppCompatActivity {
     private void wsCalling(String userName, String password) {
 
         // Change base URL to your upload server URL.
-
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Map<String, String> map = new HashMap<>();
         map.put("UserName", userName);
