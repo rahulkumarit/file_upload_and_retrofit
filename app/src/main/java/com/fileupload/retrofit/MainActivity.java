@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int PICK_IMAGE = 100;
 
-    Service service;
+    ApiInterface service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         // Change base URL to your upload server URL.
-        service = new Retrofit.Builder().baseUrl(EndPoints.ROOT_URL).client(client).build().create(Service.class);
+        service = new Retrofit.Builder().baseUrl(EndPoints.ROOT_URL).client(client).build().create(ApiInterface.class);
 
         if (btn != null) {
             btn.setOnClickListener(new View.OnClickListener() {

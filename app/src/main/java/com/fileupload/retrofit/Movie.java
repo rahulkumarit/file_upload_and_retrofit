@@ -1,4 +1,4 @@
-package com.fileupload.retrofitnew;
+package com.fileupload.retrofit;
 /**
  * Created by SONI on 9/29/2018.
  */

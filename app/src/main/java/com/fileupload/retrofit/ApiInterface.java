@@ -1,22 +1,25 @@
-package com.fileupload.retrofitnew;
+package com.fileupload.retrofit;
 /**
  * Created by SONI on 9/29/2018.
  */
 
 
+import com.fileupload.models.Login;
 import com.fileupload.models.User;
-
 import java.util.Map;
-
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -38,8 +41,15 @@ public interface ApiInterface {
     Call<User> updateUser(@Part("photo") RequestBody photo, @Part("description") RequestBody description);
 
     @FormUrlEncoded
-    @POST("/things")
-    Call<User> things(@FieldMap Map<String, String> fields);
+    @POST("LoginNew.php/")
+    Call<Login> Login(@FieldMap Map<String, String> fields);
+
+    @Multipart
+    @POST("uploadNew.php")
+    Call<ResponseBody> postImage(@Part MultipartBody.Part image, @PartMap Map<String, RequestBody> map);
+
+
+
 
 
 }

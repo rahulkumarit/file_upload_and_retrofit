@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fileupload.R;
-import com.fileupload.retrofitnew.Movie;
+import com.fileupload.retrofit.Movie;
 
 import java.util.List;
 
