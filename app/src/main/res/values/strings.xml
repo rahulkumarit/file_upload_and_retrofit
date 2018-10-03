@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestFileUpload</string>
+    <string name="button"><![CDATA[Parse XML using DOM<]]></string>
 </resources>
