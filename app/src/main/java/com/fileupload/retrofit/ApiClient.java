@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 
 public class ApiClient {
@@ -29,7 +30,26 @@ public class ApiClient {
                     .baseUrl(BASE_URL_LOGIN)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-         }
+        }
         return retrofit;
     }
+
+
+    public static Retrofit getXmlRetrofit() {
+
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL_LOGIN)
+                    .addConverterFactory(SimpleXmlConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
+    }
+
+
 }

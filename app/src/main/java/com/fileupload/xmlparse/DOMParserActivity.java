@@ -4,6 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.fileupload.R;
+import com.fileupload.models.ROOT;
+import com.fileupload.utils.StaticUtils;
+import com.fileupload.utils.WsUtils;
+import com.fileupload.wscalling.WsFactory;
+import com.fileupload.wscalling.WsResponse;
 
 /**
  * Created by SONI on 10/3/2018.
@@ -13,9 +18,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
 import android.app.Activity;
 import android.content.res.AssetManager;
 import android.os.Bundle;
@@ -28,9 +35,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import retrofit2.Call;
+
 public class DOMParserActivity extends Activity implements OnClickListener,
         OnItemClickListener {
-    Button button;
+    Button button, button1;
     ListView listView;
     List<Employee> employees = null;
 
@@ -46,8 +55,15 @@ public class DOMParserActivity extends Activity implements OnClickListener,
     static final String NODE_CITY = "city";
     static final String NODE_STATE = "state";
     static final String NODE_ZIP = "zipcode";
+    //New File of xml
+    //xml Node Name
+    static final String NODE_T002 = "T002";
+    static final String NODE_T003 = "NODE_T003";
 
-    /** Called when the activity is first created. */
+
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +71,33 @@ public class DOMParserActivity extends Activity implements OnClickListener,
 
         findViewsById();
         button.setOnClickListener(this);
+        button1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call loginWsCall = WsFactory.getXmlData();
+                WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_LOGIN, new WsResponse() {
+                    @Override
+                    public void successResponse(Object response, int code) {
+
+                        ROOT root = (ROOT) response;
+
+                        Toast.makeText(DOMParserActivity.this, "Reponse" + root.getT002().T002004C, Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void failureRespons(Throwable error, int code) {
+                        Toast.makeText(DOMParserActivity.this, "fai" + error.getCause(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+        });
     }
 
     private void findViewsById() {
         button = (Button) findViewById(R.id.button);
+        button1 = (Button) findViewById(R.id.button1);
         listView = (ListView) findViewById(R.id.employeeList);
     }
 
@@ -67,11 +106,13 @@ public class DOMParserActivity extends Activity implements OnClickListener,
         AssetManager manager = getAssets();
         InputStream stream;
         try {
-            stream = manager.open("employees.xml");
+            stream = manager.open("TestParsing.xml");
             Document doc = parser.getDocument(stream);
 
             // Get elements by name employee
-            NodeList nodeList = doc.getElementsByTagName(NODE_EMP);
+            NodeList nodeList = doc.getElementsByTagName(NODE_T002);
+
+
             employees = new ArrayList<Employee>();
             /*
              * for each <employee> element get text of name, department, type

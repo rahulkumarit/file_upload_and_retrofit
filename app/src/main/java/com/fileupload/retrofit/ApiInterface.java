@@ -5,6 +5,7 @@ package com.fileupload.retrofit;
 
 
 import com.fileupload.models.Login;
+import com.fileupload.models.ROOT;
 import com.fileupload.models.UploadImage;
 import com.fileupload.models.User;
 import com.google.gson.JsonObject;
@@ -57,6 +58,12 @@ public interface ApiInterface {
     @Multipart
     @POST("uploadNew.php")
     Call<UploadImage> postImage(@Part MultipartBody.Part image, @PartMap Map<String, RequestBody> map);
+
+
+
+    @GET("ShowXml.php")
+    Call<ROOT> getXmlData();
+
 
 
     //The

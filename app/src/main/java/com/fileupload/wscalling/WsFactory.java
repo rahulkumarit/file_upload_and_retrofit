@@ -1,6 +1,7 @@
 package com.fileupload.wscalling;
 
 import com.fileupload.models.Login;
+import com.fileupload.models.ROOT;
 import com.fileupload.models.UploadImage;
 import com.fileupload.retrofit.ApiClient;
 import com.fileupload.retrofit.ApiInterface;
@@ -41,4 +42,13 @@ public class WsFactory {
     }
 
 
+    public static Call getXmlData() {
+        ApiInterface apiService = ApiClient.getXmlRetrofit().create(ApiInterface.class);
+        Call<ROOT> loginCall = apiService.getXmlData();
+        return loginCall;
+
     }
+
+
+
+}
